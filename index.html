@@ -22,11 +22,15 @@
     width: 100%;
     flex-wrap: wrap;
   }
-  #eoline-id1, #eoline-id2{
+  #eolink-id1, #eolink-id2{
     width: 300px;
     height: 300px;
   }
-  .eoline-result{
+  #eolink-id3{
+      width: 100px;
+      height: 100px;
+  }
+  .eolink-result{
     border: 1px solid black;
     width: 600px;
     height: 300px;
@@ -40,30 +44,35 @@
     <div class="content">
         <div>处理eoline数据</div>
         <div>
-            <div><label for="eoline-id1">eolink 预览数据 参数说明数据</label></div>
-            <textarea type="text" id="eoline-id1" placeholder="请输入参数说明数据" >
+            <div><label for="eolink-id1">要取得字段</label></div>
+            <textarea type="text" id="eolink-id3" placeholder="要取得字段" >result</textarea>
+        </div>
+        <div>
+            <div><label for="eolink-id1">eolink 预览数据 参数说明数据</label></div>
+            <textarea type="text" id="eolink-id1" placeholder="请输入参数说明数据" >
                     
             </textarea>
         </div>
         <div> 
-            <div><label for="eoline-id2">eolink 预览数据 随机数据数据</label></div>    
-            <textarea type="text" id="eoline-id2" placeholder="请输入随机数据数据">
+            <div><label for="eolink-id2">eolink 预览数据 随机数据数据</label></div>    
+            <textarea type="text" id="eolink-id2" placeholder="请输入随机数据数据">
                     
             </textarea>
         </div>
         <div>
             <div><button id="eolink-btn1">确认</button><button id="eolink-btn2">复制输出结果</button> 输出结果: </div>
-            <div class="eoline-result"></div>
+            <div class="eolink-result"></div>
         </div>
         <div>
             <button id="eolink-btn3">清空</button>
         </div>
     </div>
   <script>
-      const eolinkId1 = document.documentElement.querySelector("#eoline-id1");
-      const eolinkId2 = document.documentElement.querySelector("#eoline-id2");
+      const eolinkId1 = document.documentElement.querySelector("#eolink-id1");
+      const eolinkId2 = document.documentElement.querySelector("#eolink-id2");
+      const eolinkId3 = document.documentElement.querySelector("#eolink-id3");
       const eolinkBtn1 = document.documentElement.querySelector("#eolink-btn1");
-      const eolinkResult = document.documentElement.querySelector(".eoline-result");
+      const eolinkResult = document.documentElement.querySelector(".eolink-result");
       const eolinkBtn2 = document.documentElement.querySelector("#eolink-btn2");
       const eolinkBtn3 = document.documentElement.querySelector("#eolink-btn3");
 
@@ -120,21 +129,29 @@ function copy(className){
     }
 
       eolinkBtn1.onclick = () =>{
+        try{
           const r1 = eolinkId1.value
           const r2 = eolinkId2.value
+          const r3 = eolinkId3.value;
           let content = "";
           if (!r1 || !r2) {
             content = "不能为空"
           }
           const q1 = JSON.parse(r1);
           const q2 = JSON.parse(r2)
-         content = handleData(q1.data.result, q2.data.result);
+          const d1 = r3 ? q1.data[r3] : q1.data.result;
+          const d2 = r3 ? q2.data[r3] : q2.data.result;
+         content = handleData(d1, d2);
          console.log("结果为：", content)
          eolinkResult.innerText = content;
+        } catch(err) {
+            alert("格式错误", err)
+            console.error("格式错误", err);
+        }
       }
 
       eolinkBtn2.onclick = () => {
-        copy(".eoline-result")
+        copy(".eolink-result")
       }
 
       eolinkBtn3.onclick = () => {

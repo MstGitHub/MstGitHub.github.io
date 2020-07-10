@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>玫瑰</title>
+  <title>涛</title>
 </head>
 <style type="text/css">
   body,div,p,ul,ol,li,dl,dt,dd,table,tr,td,form,hr,fieldset,h1,h2,h3,h4,h5,h6,img,input{
@@ -11,143 +11,164 @@
       padding:0;
   }
   body{
-      background: black;
+      /* background: black; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
   }
   .content{
-    width: 200px;
-    height: 150px;
-    position: absolute;
-    margin: 200px auto 0;
-    perspective: 1500px;
-    top: 30%;
-    left: 40%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
   }
-  .box{
-      width: 200px;
-      height: 150px;
-      transform-style: preserve-3d;
-      transform:rotateX(-30deg);
-      animation:photo 15s linear infinite;
+  #eoline-id1, #eoline-id2{
+    width: 300px;
+    height: 300px;
   }
-  .box:hover{
-      animation:photo 15s linear infinite paused;
+  .eoline-result{
+    border: 1px solid black;
+    width: 600px;
+    height: 300px;
+    overflow: auto;
   }
-  .box img{
-      width: 200px;
-      height: 150px;
-      position: absolute;
-      left: 0;
-      top: 0;
-      transform-style: preserve-3d;
-      transition: all 1s;
-  }
-  .box img:nth-child(1){
-      transform:translateZ(280px);
-  }
-  .box img:nth-child(2){
-      transform:rotateY(40deg) translateZ(280px);
-  }
-  .box img:nth-child(3){
-      transform:rotateY(80deg) translateZ(280px);
-  }
-  .box img:nth-child(4){
-      transform:rotateY(120deg) translateZ(280px);
-  }
-  .box img:nth-child(5){
-      transform:rotateY(160deg) translateZ(280px);
-  }
-  .box img:nth-child(6){
-      transform:rotateY(200deg) translateZ(280px);
-  }
-  .box img:nth-child(7){
-      transform:rotateY(240deg) translateZ(280px);
-  }
-  .box img:nth-child(8){
-      transform:rotateY(280deg) translateZ(280px);
-  }
-  .box img:nth-child(9){
-      transform:rotateY(320deg) translateZ(280px);
-  }
-    
-  .box img:nth-child(1):hover{
-      transform:translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(2):hover{
-      transform:rotateY(40deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(3):hover{
-      transform:rotateY(80deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(4):hover{
-      transform:rotateY(120deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(5):hover{
-      transform:rotateY(160deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(6):hover{
-      transform:rotateY(200deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(7):hover{
-      transform:rotateY(240deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(8):hover{
-      transform:rotateY(280deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(9):hover{
-      transform:rotateY(320deg) translateZ(280px) scale(1.2);
-  }
-    
-  @keyframes photo{
-      0%{
-          transform:rotateX(-30deg) rotateY(0deg);
-      }
-      100%{
-          transform:rotateX(-30deg) rotateY(360deg);
-      }
-  }
-  #c {
-    position: absolute;
-    z-index: 10;
-    top: 10px;
-    left: 30%;
-}
+
   
   </style>
   </head>
 <body >
-  <canvas id="c"></canvas>
-
-  <div class="content">
-
-      <div class="box">
-          <img src="./images/1.jpg" alt=""/>
-          <img src="./images/2.jpg" alt=""/>
-          <img src="./images/1.jpg" alt=""/>
-          <img src="./images/2.jpg" alt=""/>
-          <img src="./images/1.jpg" alt=""/>
-          <img src="./images/2.jpg" alt=""/>
-          <img src="./images/1.jpg" alt=""/>
-          <img src="./images/2.jpg" alt=""/>
-          <img src="./images/1.jpg" alt=""/>
-          <!-- <img src="./images/2.jpg" alt=""/> -->
-          <!-- <img src="images/3.png" alt=""/>
-          <img src="images/4.png" alt=""/>
-          <img src="images/5.png" alt=""/>
-          <img src="images/6.png" alt=""/>
-          <img src="images/7.png" alt=""/>
-          <img src="images/8.png" alt=""/>
-          <img src="images/9.png" alt=""/> -->
-      </div>
-  </div>
-
+    <div class="content">
+        <div>处理eoline数据</div>
+        <div>
+            <div><label for="eoline-id1">eolink 预览数据 参数说明数据</label></div>
+            <textarea type="text" id="eoline-id1" placeholder="请输入参数说明数据" >
+                    {
+                        "data": {
+                            "code": "自定义状态码",
+                            "codeText": "code 状态码的描述",
+                            "result": {
+                                "total": "总数",
+                                "detail": [
+                                    {
+                                        "type": "类型 如农药",
+                                        "value": "值"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+            </textarea>
+        </div>
+        <div> 
+            <div><label for="eoline-id2">eolink 预览数据 随机数据数据</label></div>    
+            <textarea type="text" id="eoline-id2" placeholder="请输入随机数据数据">
+                    {
+                        "data": {
+                            "code": "自定义状态码",
+                            "codeText": "code 状态码的描述",
+                            "result": {
+                                "total": "总数",
+                                "detail": [
+                                    {
+                                        "type": "类型 如农药",
+                                        "value": "值"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+            </textarea>
+        </div>
+        <div>
+            <div><button id="eolink-btn1">确认</button><button id="eolink-btn2">复制输出结果</button> 输出结果: </div>
+            <div class="eoline-result"></div>
+        </div>
+        <div>
+            <button id="eolink-btn3">清空</button>
+        </div>
+    </div>
   <script>
-    var b = document.body;
-    var c = document.getElementsByTagName('canvas')[0];
-    var a = c.getContext('2d');
-    document.body.clientWidth;
+      const eolinkId1 = document.documentElement.querySelector("#eoline-id1");
+      const eolinkId2 = document.documentElement.querySelector("#eoline-id2");
+      const eolinkBtn1 = document.documentElement.querySelector("#eolink-btn1");
+      const eolinkResult = document.documentElement.querySelector(".eoline-result");
+      const eolinkBtn2 = document.documentElement.querySelector("#eolink-btn2");
+      const eolinkBtn3 = document.documentElement.querySelector("#eolink-btn3");
 
-    with (m = Math) C = cos, S = sin, P = pow, R = random; c.width = c.height = f = 600; h = -250; function p(a, b, c) { if (c > 60) return [S(a * 7) * (13 + 5 / (.2 + P(b * 4, 4))) - S(b) * 50, b * f + 50, 625 + C(a * 7) * (13 + 5 / (.2 + P(b * 4, 4))) + b * 400, a * 1 - b / 2, a]; A = a * 2 - 1; B = b * 2 - 1; if (A * A + B * B < 1) { if (c > 37) { n = (j = c & 1) ? 6 : 4; o = .5 / (a + .01) + C(b * 125) * 3 - a * 300; w = b * h; return [o * C(n) + w * S(n) + j * 610 - 390, o * S(n) - w * C(n) + 550 - j * 350, 1180 + C(B + A) * 99 - j * 300, .4 - a * .1 + P(1 - B * B, -h * 6) * .15 - a * b * .4 + C(a + b) / 5 + P(C((o * (a + 1) + (B > 0 ? w : -w)) / 25), 30) * .1 * (1 - B * B), o / 1e3 + .7 - o * w * 3e-6] } if (c > 32) { c = c * 1.16 - .15; o = a * 45 - 20; w = b * b * h; z = o * S(c) + w * C(c) + 620; return [o * C(c) - w * S(c), 28 + C(B * .5) * 99 - b * b * b * 60 - z / 2 - h, z, (b * b * .3 + P((1 - (A * A)), 7) * .15 + .3) * b, b * .7] } o = A * (2 - b) * (80 - c * 2); w = 99 - C(A) * 120 - C(b) * (-h - c * 4.9) + C(P(1 - b, 7)) * 50 + c * 2; z = o * S(c) + w * C(c) + 700; return [o * C(c) - w * S(c), B * 99 - C(P(b, 7)) * 50 - c / 3 - z / 1.35 + 450, z, (1 - b / 1.2) * .9 + a * .1, P((1 - b), 20) / 4 + .05] } } setInterval('for(i=0;i<1e4;i++)if(s=p(R(),R(),i%46/.74)){z=s[2];x=~~(s[0]*f/z-h);y=~~(s[1]*f/z-h);if(!m[q=y*f+x]|m[q]>z)m[q]=z,a.fillStyle="rgb("+~(s[3]*h)+","+~(s[4]*h)+","+~(s[3]*s[3]*-80)+")",a.fillRect(x,y,1,1)}', 0)
 
+/** 
+ *@param req1 为预览数据  参数说明 
+* @param req2  为预览数据  随机数据
+* */
+handleData = (req1, req2) => {
+    try {
+    /** 处理键值对格式 */
+    handleReq = (obj1, obj2, hasTab) => {
+        let temps = ``;
+        for (const key in obj1) {
+        if (Array.isArray(obj2[key]) && obj2[key].length !== 0) {
+            temps += `\n/** 详情 */\n${key}: {${handleReq(obj1[key][0], obj2[key][0], true)}\n}[];`;
+        } else if (Array.isArray(obj2[key]) && obj2[key].length === 0) {
+            temps += `\n/** ${obj1[key]} */\n${key}: [];`
+        } else {
+            if (hasTab) {
+            temps += `\n  /** ${obj1[key]} */\n  ${key}: ${typeof obj2[key]};`
+            } else {
+            temps += `\n/** ${obj1[key]} */\n${key}: ${typeof obj2[key]};`
+            }
+        }
+        }
+        return temps;
+    }
+    let sumTemps = '';
+    if (Array.isArray(req1)) {
+    sumTemps += handleReq(req1[0], req2[0]);
+    } else {
+        sumTemps += handleReq(req1, req2)
+    }
+    return sumTemps;
+} catch(err) {
+    return "格式错误";
+}
+}
+
+function copy(className){
+      // 创建range对象
+      let range = document.createRange();
+      // 传入需要选中的节点
+      range.selectNodeContents(document.querySelector(className));
+      var selection = document.getSelection();
+      // 清空选中的区域
+      selection.removeAllRanges();
+      // 添加选中区域
+      selection.addRange(range);
+      // 执行复制
+      document.execCommand('Copy');
+      alert("复制成功");
+    }
+
+      eolinkBtn1.onclick = () =>{
+          const r1 = eolinkId1.value
+          const r2 = eolinkId2.value
+          let content = "";
+          if (!r1 || !r2) {
+            content = "不能为空"
+          }
+          const q1 = JSON.parse(r1);
+          const q2 = JSON.parse(r2)
+         content = handleData(q1.data.result, q2.data.result);
+         console.log("结果为：", content)
+         eolinkResult.innerText = content;
+      }
+
+      eolinkBtn2.onclick = () => {
+        copy(".eoline-result")
+      }
+
+      eolinkBtn3.onclick = () => {
+          eolinkId1.value = "";
+          eolinkId2.value = ""
+      }
   </script>
 </body>
 

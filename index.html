@@ -49,18 +49,14 @@
         </div>
         <div>
             <div><label for="eolink-id1">eolink 预览数据 参数说明数据</label></div>
-            <textarea type="text" id="eolink-id1" placeholder="请输入参数说明数据" >
-                    
-            </textarea>
+            <textarea type="text" id="eolink-id1" placeholder="请输入参数说明数据" ></textarea>
         </div>
         <div> 
             <div><label for="eolink-id2">eolink 预览数据 随机数据数据</label></div>    
-            <textarea type="text" id="eolink-id2" placeholder="请输入随机数据数据">
-                    
-            </textarea>
+            <textarea type="text" id="eolink-id2" placeholder="请输入随机数据数据"></textarea>
         </div>
         <div>
-            <div><button id="eolink-btn1">确认</button><button id="eolink-btn2">复制输出结果</button> 输出结果: </div>
+            <div><button id="eolink-btn1">确认</button><button id="eolink-btn2">复制</button> 输出结果: </div>
             <div class="eolink-result"></div>
         </div>
         <div>
@@ -125,7 +121,6 @@ function copy(className){
       selection.addRange(range);
       // 执行复制
       document.execCommand('Copy');
-      alert("复制成功");
     }
 
       eolinkBtn1.onclick = () =>{
@@ -142,7 +137,7 @@ function copy(className){
           const d1 = r3 ? q1.data[r3] : q1.data.result;
           const d2 = r3 ? q2.data[r3] : q2.data.result;
          content = handleData(d1, d2);
-         console.log("结果为：", content)
+         console.log(content)
          eolinkResult.innerText = content;
         } catch(err) {
             alert("格式错误", err)
@@ -152,6 +147,10 @@ function copy(className){
 
       eolinkBtn2.onclick = () => {
         copy(".eolink-result")
+        eolinkBtn2.innerText = "复制成功";
+        setTimeout(() => {
+          eolinkBtn2.innerText = "复制"
+        }, 2000)
       }
 
       eolinkBtn3.onclick = () => {

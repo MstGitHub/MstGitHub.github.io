@@ -29,15 +29,30 @@
         砂锅 大排档 米线 麻辣烫 馄饨 火锅 烧烤 泡面 水饺 涮羊肉 味千拉面 扬州炒饭 海底捞 披萨 麦当劳 肯德基 汉堡王 兰州拉面 沙县小吃 烤肉 烤鱼 海鲜 铁板烧 韩国料理 冷面 烤冷面 萨莉亚 桂林米粉 过桥米线 羊肉火锅 鸭血粉丝 菜煎饼 川菜 湘菜 本帮菜 烤鸭 炸鸡 臭豆腐 螺狮粉 绝味鸭脖 鸭脖 奶茶 芋圆 三明治 手抓饼 茆茆 水果
       </textarea>
       <div id="food">今天吃点神马</div>
-
+      <div>
+        <input id="speed" type="text" placeholder="默认速度 200 ms">&nbsp;&nbsp;
+        <!-- <button id="speedBtn">确认修改</button> -->
+      </div>
       <button id="btn1">随机一下</button>
   </div>
   <script>
     const menus = document.querySelector("#menus");
     const food = document.querySelector("#food");
     const btn1 = document.querySelector("#btn1");
+    const speedInput = document.querySelector("#speed");
+    const speedBtn = document.querySelector("#speedBtn");
+
+
+    let speed = 200;
 
     let status = 1;
+
+    // speedInput.onclick = () => {
+    //   speed = Number(document.querySelector("#speed").value || 200);
+    //   status = 1;
+    //   clearInterval(this.timeId);
+    // }
+
 
     btn1.onclick = () => {
       if (status === 2) {
@@ -48,11 +63,13 @@
       }
       status = 2;
       btn1.innerHTML = "暂停";
+      speed = Number(document.querySelector("#speed").value || 200);
       const currentMenus = menus.value.trim().split(" ").filter((item) => !!item);
       const len = currentMenus.length - 1;
+      console.log(3333, speed)
       this.timeId = setInterval(() => {
         food.innerHTML = `今天吃点${currentMenus[Math.floor(Math.random() * len)]}`
-      }, 200);
+      }, speed);
     }
 
   </script>

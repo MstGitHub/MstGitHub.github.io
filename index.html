@@ -40,10 +40,12 @@
     btn1.onclick = () => {
       if (status === 2) {
         status = 1;
+        btn1.innerHTML = "随机一下";
         clearInterval(this.timeId);
         return;
       }
       status = 2;
+      btn1.innerHTML = "暂停";
       const currentMenus = menus.value.trim().split(" ").filter((item) => !!item);
       const len = currentMenus.length - 1;
       this.timeId = setInterval(() => {

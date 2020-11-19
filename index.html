@@ -1,162 +1,58 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>玫瑰</title>
-</head>
-<style type="text/css">
-  body,div,p,ul,ol,li,dl,dt,dd,table,tr,td,form,hr,fieldset,h1,h2,h3,h4,h5,h6,img,input{
-      margin:0;
-      padding:0;
-  }
-  body{
-      background: black;
-  }
-  .content{
-    width: 200px;
-    height: 150px;
-    position: absolute;
-    margin: 200px auto 0;
-    perspective: 1500px;
-    top: 30%;
-    left: 40%;
-  }
-  .box{
-      width: 200px;
-      height: 150px;
-      transform-style: preserve-3d;
-      transform:rotateX(-30deg);
-      animation:photo 15s linear infinite;
-  }
-  .box:hover{
-      animation:photo 15s linear infinite paused;
-  }
-  .box img{
-      width: 200px;
-      height: 150px;
-      position: absolute;
-      left: 0;
-      top: 0;
-      transform-style: preserve-3d;
-      transition: all 1s;
-  }
-  .box img:nth-child(1){
-      transform:translateZ(280px);
-  }
-  .box img:nth-child(2){
-      transform:rotateY(40deg) translateZ(280px);
-  }
-  .box img:nth-child(3){
-      transform:rotateY(80deg) translateZ(280px);
-  }
-  .box img:nth-child(4){
-      transform:rotateY(120deg) translateZ(280px);
-  }
-  .box img:nth-child(5){
-      transform:rotateY(160deg) translateZ(280px);
-  }
-  .box img:nth-child(6){
-      transform:rotateY(200deg) translateZ(280px);
-  }
-  .box img:nth-child(7){
-      transform:rotateY(240deg) translateZ(280px);
-  }
-  .box img:nth-child(8){
-      transform:rotateY(280deg) translateZ(280px);
-  }
-  .box img:nth-child(9){
-      transform:rotateY(320deg) translateZ(280px);
-  }
-    
-  .box img:nth-child(1):hover{
-      transform:translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(2):hover{
-      transform:rotateY(40deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(3):hover{
-      transform:rotateY(80deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(4):hover{
-      transform:rotateY(120deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(5):hover{
-      transform:rotateY(160deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(6):hover{
-      transform:rotateY(200deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(7):hover{
-      transform:rotateY(240deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(8):hover{
-      transform:rotateY(280deg) translateZ(280px) scale(1.2);
-  }
-  .box img:nth-child(9):hover{
-      transform:rotateY(320deg) translateZ(280px) scale(1.2);
-  }
-    
-  @keyframes photo{
-      0%{
-          transform:rotateX(-30deg) rotateY(0deg);
-      }
-      100%{
-          transform:rotateX(-30deg) rotateY(360deg);
-      }
-  }
-  #c {
-    position: absolute;
-    z-index: 10;
-    top: 10px;
-    left: 30%;
-}
-  
-  </style>
-  </head>
-<body >
-  <canvas id="c"></canvas>
-
-  <div class="content">
-
-      <div class="box">
-          <img src="./images/1.jpg" alt=""/>
-          <img src="./images/2.jpg" alt=""/>
-          <img src="./images/1.jpg" alt=""/>
-          <img src="./images/2.jpg" alt=""/>
-          <img src="./images/1.jpg" alt=""/>
-          <img src="./images/2.jpg" alt=""/>
-          <img src="./images/1.jpg" alt=""/>
-          <img src="./images/2.jpg" alt=""/>
-          <img src="./images/1.jpg" alt=""/>
-          <!-- <img src="./images/2.jpg" alt=""/> -->
-          <!-- <img src="images/3.png" alt=""/>
-          <img src="images/4.png" alt=""/>
-          <img src="images/5.png" alt=""/>
-          <img src="images/6.png" alt=""/>
-          <img src="images/7.png" alt=""/>
-          <img src="images/8.png" alt=""/>
-          <img src="images/9.png" alt=""/> -->
-      </div>
-      <div>
-        
-      </div>
-  </div>
-
-  <script>
-    var b = document.body;
-    var c = document.getElementsByTagName('canvas')[0];
-    var a = c.getContext('2d');
-    document.body.clientWidth;
-
-    with (m = Math) C = cos, S = sin, P = pow, R = random; c.width = c.height = f = 600; h = -250; function p(a, b, c) { if (c > 60) return [S(a * 7) * (13 + 5 / (.2 + P(b * 4, 4))) - S(b) * 50, b * f + 50, 625 + C(a * 7) * (13 + 5 / (.2 + P(b * 4, 4))) + b * 400, a * 1 - b / 2, a]; A = a * 2 - 1; B = b * 2 - 1; if (A * A + B * B < 1) { if (c > 37) { n = (j = c & 1) ? 6 : 4; o = .5 / (a + .01) + C(b * 125) * 3 - a * 300; w = b * h; return [o * C(n) + w * S(n) + j * 610 - 390, o * S(n) - w * C(n) + 550 - j * 350, 1180 + C(B + A) * 99 - j * 300, .4 - a * .1 + P(1 - B * B, -h * 6) * .15 - a * b * .4 + C(a + b) / 5 + P(C((o * (a + 1) + (B > 0 ? w : -w)) / 25), 30) * .1 * (1 - B * B), o / 1e3 + .7 - o * w * 3e-6] } if (c > 32) { c = c * 1.16 - .15; o = a * 45 - 20; w = b * b * h; z = o * S(c) + w * C(c) + 620; return [o * C(c) - w * S(c), 28 + C(B * .5) * 99 - b * b * b * 60 - z / 2 - h, z, (b * b * .3 + P((1 - (A * A)), 7) * .15 + .3) * b, b * .7] } o = A * (2 - b) * (80 - c * 2); w = 99 - C(A) * 120 - C(b) * (-h - c * 4.9) + C(P(1 - b, 7)) * 50 + c * 2; z = o * S(c) + w * C(c) + 700; return [o * C(c) - w * S(c), B * 99 - C(P(b, 7)) * 50 - c / 3 - z / 1.35 + 450, z, (1 - b / 1.2) * .9 + a * .1, P((1 - b), 20) / 4 + .05] } } setInterval('for(i=0;i<1e4;i++)if(s=p(R(),R(),i%46/.74)){z=s[2];x=~~(s[0]*f/z-h);y=~~(s[1]*f/z-h);if(!m[q=y*f+x]|m[q]>z)m[q]=z,a.fillStyle="rgb("+~(s[3]*h)+","+~(s[4]*h)+","+~(s[3]*s[3]*-80)+")",a.fillRect(x,y,1,1)}', 0)
-    var b = [];
-    var a = []
-    for (var i = 0; i < b.length; i += 8) {
-        console.log(3333, i)
-      a.push(b.slice(i, i + 8));
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      position: fixed;
     }
+    #menus{
+      width: 100%;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+      <textarea id="menus">
+        盖浇饭 砂锅 大排档 米线 满汉全席 西餐 麻辣烫 自助餐 炒面 快餐 水果 西北风 馄饨 火锅 烧烤 泡面 水饺 日本料理 涮羊肉 味千拉面 面包 扬州炒饭 自助餐 菜饭骨头汤 茶餐厅 海底捞 西贝莜面村 披萨 麦当劳 KFC 汉堡王 卡乐星 兰州拉面 沙县小吃 烤鱼 烤肉 海鲜 铁板烧 韩国料理 粥 快餐 萨莉亚 桂林米粉 东南亚菜 甜点 农家菜 川菜 粤菜 湘菜 本帮菜 生活 全家便当 
+      </textarea>
+
+      <div id="food">今天吃点神马</div>
+
+      <button id="btn1">随机一下</button>
+  </div>
+  <script>
+    const menus = document.querySelector("#menus");
+    const food = document.querySelector("#food");
+    const btn1 = document.querySelector("#btn1");
+
+    let status = 1;
+
+    btn1.onclick = () => {
+      if (status === 2) {
+        status = 1;
+        btn1.innerHTML = "随机一下";
+        clearInterval(this.timeId);
+        return;
+      }
+      status = 2;
+      btn1.innerHTML = "暂停";
+      const currentMenus = menus.value.trim().split(" ").filter((item) => !!item);
+      const len = currentMenus.length - 1;
+      this.timeId = setInterval(() => {
+        food.innerHTML = `今天吃点${currentMenus[Math.floor(Math.random() * len)]}`
+      }, 200);
+    }
+
   </script>
 </body>
-
 </html>

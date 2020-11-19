@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="div">文本</div>
+  <div onclick="copy('.div')">复制</div>
+  <script>
+    function copy(className){
+      // 创建range对象
+      let range = document.createRange();
+      // 传入需要选中的节点
+      range.selectNodeContents(document.querySelector(className));
+      var selection = document.getSelection();
+      // 清空选中的区域
+      selection.removeAllRanges();
+      // 添加选中区域
+      selection.addRange(range);
+      // 执行复制
+      document.execCommand('Copy');
+    }
+  </script>
+</body>

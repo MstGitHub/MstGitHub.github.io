@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>涛</title>
+</head>
+<style type="text/css">
+  body,div,p,ul,ol,li,dl,dt,dd,table,tr,td,form,hr,fieldset,h1,h2,h3,h4,h5,h6,img,input{
+      margin:0;
+      padding:0;
+  }
+  body{
+      /* background: black; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .content{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  #eolink-id1, #eolink-id2{
+    width: 300px;
+    height: 300px;
+  }
+  #eolink-id3{
+      width: 100px;
+      height: 100px;
+  }
+  .eolink-result{
+    border: 1px solid black;
+    width: 600px;
+    height: 300px;
+    overflow: auto;
+  }
+
+  
+  </style>
+  </head>
+<body >
+    <div class="content">
+        <div>处理eoline数据</div>
+        <div>
+            <div><label for="eolink-id1">要取得字段</label></div>
+            <textarea type="text" id="eolink-id3" placeholder="要取得字段" >result</textarea>
+        </div>
+        <div>
+            <div><label for="eolink-id1">eolink 预览数据 参数说明数据</label></div>
+            <textarea type="text" id="eolink-id1" placeholder="请输入参数说明数据" ></textarea>
+        </div>
+        <div> 
+            <div><label for="eolink-id2">eolink 预览数据 随机数据数据</label></div>    
+            <textarea type="text" id="eolink-id2" placeholder="请输入随机数据数据"></textarea>
+        </div>
+        <div>
+            <div><button id="eolink-btn1">确认</button><button id="eolink-btn2">复制</button> 输出结果: </div>
+            <div class="eolink-result"></div>
+        </div>
+        <div>
+            <button id="eolink-btn3">清空</button>
+        </div>
+    </div>
+  <script>
+      const eolinkId1 = document.documentElement.querySelector("#eolink-id1");
+      const eolinkId2 = document.documentElement.querySelector("#eolink-id2");
+      const eolinkId3 = document.documentElement.querySelector("#eolink-id3");
+      const eolinkBtn1 = document.documentElement.querySelector("#eolink-btn1");
+      const eolinkResult = document.documentElement.querySelector(".eolink-result");
+      const eolinkBtn2 = document.documentElement.querySelector("#eolink-btn2");
+      const eolinkBtn3 = document.documentElement.querySelector("#eolink-btn3");
+
+
+/** 
+ *@param req1 为预览数据  参数说明 
+* @param req2  为预览数据  随机数据
+* */
+handleData = (req1, req2) => {
+    try {
+    /** 处理键值对格式 */
+    handleReq = (obj1, obj2, hasTab) => {
+        let temps = ``;
+        for (const key in obj1) {
+          if (Array.isArray(obj2[key]) && obj2[key].length !== 0) {
+              temps += `\n/** 详情 */\n${key}: {${handleReq(obj1[key][0], obj2[key][0], true)}\n}[];`;
+          } else if (Array.isArray(obj2[key]) && obj2[key].length === 0) {
+              temps += `\n/** ${obj1[key]} */\n${key}: [];`
+          } else if (typeof obj2[key] === "object") {
+              temps += `\n/** 详情 */\n${key}: {\n ${handleReq(obj1[key], obj2[key])} \n};` ;
+          } else {
+              if (hasTab) {
+              temps += `\n  /** ${obj1[key]} */\n  ${key}: ${typeof obj2[key]};`
+              } else {
+              temps += `\n/** ${obj1[key]} */\n${key}: ${typeof obj2[key]};`
+              }
+          }
+        }
+        return temps;
+    }
+    let sumTemps = '';
+    if (Array.isArray(req1)) {
+    sumTemps += handleReq(req1[0], req2[0]);
+    } else {
+        sumTemps += handleReq(req1, req2)
+    }
+    return sumTemps;
+} catch(err) {
+    return "格式错误";
+}
+}
+
+function copy(className){
+      // 创建range对象
+      let range = document.createRange();
+      // 传入需要选中的节点
+      range.selectNodeContents(document.querySelector(className));
+      var selection = document.getSelection();
+      // 清空选中的区域
+      selection.removeAllRanges();
+      // 添加选中区域
+      selection.addRange(range);
+      // 执行复制
+      document.execCommand('Copy');
+    }
+
+      eolinkBtn1.onclick = () =>{
+        try{
+          const r1 = eolinkId1.value
+          const r2 = eolinkId2.value
+          const r3 = eolinkId3.value;
+          let content = "";
+          if (!r1 || !r2) {
+            content = "不能为空"
+          }
+          const q1 = JSON.parse(r1);
+          const q2 = JSON.parse(r2)
+          const d1 = r3 ? q1.data[r3] : q1.data.result;
+          const d2 = r3 ? q2.data[r3] : q2.data.result;
+         content = handleData(d1, d2);
+         console.log(content)
+         eolinkResult.innerText = content;
+        } catch(err) {
+            alert("格式错误", err)
+            console.error("格式错误", err);
+        }
+      }
+
+      eolinkBtn2.onclick = () => {
+        copy(".eolink-result")
+        eolinkBtn2.innerText = "复制成功";
+        setTimeout(() => {
+          eolinkBtn2.innerText = "复制"
+        }, 2000)
+      }
+
+      eolinkBtn3.onclick = () => {
+          eolinkId1.value = "";
+          eolinkId2.value = ""
+      }
+  </script>
+</body>
+
+</html>
